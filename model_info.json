@@ -1,6 +1,6 @@
 {
-    "name": "GitHub Action Example Model",
-    "version": "0.0.2",
+    "name": "GitHub Workflow Example Model",
+    "version": "0.0.1",
     "weightsFilePath": "weights/model_latest.pkl",
     "sampleDataFilePath": "data/digits_sample.json"
 }
