@@ -1,15 +1,15 @@
 # Contributing to this Repository
 
-<img alt="GitHub contributors" src="https://img.shields.io/github/contributors/modzy/github-action-model-deployment">
-<img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/modzy/github-action-model-deployment">
-<img alt="GitHub Release Date" src="https://img.shields.io/github/issues-raw/modzy/github-action-model-deployment">
+<img alt="GitHub contributors" src="https://img.shields.io/github/contributors/modzy/github-workflow-model-deployment">
+<img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/modzy/github-workflow-model-deployment">
+<img alt="GitHub Release Date" src="https://img.shields.io/github/issues-raw/modzy/github-workflow-model-deployment">
 
 <a href="https://github.com/modzy/github-action-model-deployment/tree/main/CODE_OF_CONDUCT.md" style="text-decoration:none">
     <img src="https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg" alt="Contributor Covenant" style="max-width:100%;">
 </a>
 
 
-[Readme](https://github.com/modzy/excel-integration-windows/tree/main/README.md) | [Documentation](https://docs.modzy.com)
+[Readme](https://github.com/modzy/github-workflow-model-deployment/tree/main/README.md) | [Documentation](https://docs.modzy.com)
 
 Contributions are welcome and they are greatly appreciated! Every little bit helps, and credit will always be given.
 
@@ -18,7 +18,7 @@ Below you'll find our contributing requirements, a step-by-step guideline, and o
 
 ## Requirements
 
-- Search previous link:https://github.com/modzy/excel-integration-windows/issues[issues] before making new ones to avoid duplicates.
+- Search previous link:https://github.com/modzy/github-workflow-model-deployment/issues[issues] before making new ones to avoid duplicates.
 - If you are reporting a bug, please include:
   - Your operating system name and version.
   - Any details about your local setup that might be helpful in troubleshooting.
