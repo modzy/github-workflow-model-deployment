@@ -5,9 +5,9 @@
   
 **This repository illustrates a CI/CD pipeline to automate the deployment of machine learning models to Modzy.**
 
-![GitHub contributors](https://img.shields.io/github/contributors/modzy/github-action-model-deployment)
-![GitHub last commit](https://img.shields.io/github/last-commit/modzy/github-action-model-deployment)
-![GitHub Release Date](https://img.shields.io/github/issues-raw/modzy/github-action-model-deployment)
+![GitHub contributors](https://img.shields.io/github/contributors/modzy/github-workflow-model-deployment)
+![GitHub last commit](https://img.shields.io/github/last-commit/modzy/github-workflow-model-deployment)
+![GitHub Release Date](https://img.shields.io/github/issues-raw/modzy/github-workflow-model-deployment)
 
 [Chassis](<https://github.com/modzy/chassis>)
 </div>
