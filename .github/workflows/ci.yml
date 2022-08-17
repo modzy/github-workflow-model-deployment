@@ -25,6 +25,7 @@ jobs:
         CHASSIS_SERVICE: ${{ secrets.CHASSIS_SERVICE }}
       run: |
         import os, json, pickle, chassisml
+        from modzy import ApiClient
         import numpy as np
 
         chassis_creds = {
@@ -68,10 +69,7 @@ jobs:
           model_name=model_info["name"],
           model_version=model_info["version"],
           registry_user=chassis_creds["dockerhub_user"],
-          registry_pass=chassis_creds["dockerhub_pass"],
-          modzy_url=chassis_creds["modzy_url"],
-          modzy_api_key=chassis_creds["modzy_api_key"],
-          modzy_sample_input_path=model_info["sampleDataFilePath"]
+          registry_pass=chassis_creds["dockerhub_pass"]
         )
 
         print(response.get('job_id'))
@@ -79,8 +77,17 @@ jobs:
         final_status = chassis_client.block_until_complete(response.get('job_id'))
         print(final_status)
 
-        if not (final_status["status"]["failed"] is None and final_status["status"]["conditions"][0]["type"] == "Complete"):
-          raise ValueError("Error publishing model (See details above)")   
+        # deploy model with Modzy SDK
+        client = ApiClient(chassis_creds["modzy_url"], chassis_creds["modzy_api_key"])
+
+        new_model_data = client.models.deploy(
+            container_image=f"{chassis_creds['dockerhub_user']}/{'-'.join(model_info['name'].lower().split(' '))}:{model_info['version']}",
+            model_name=model_info["name"],
+            model_version=model_info["version"],
+            sample_input_file=model_info["sampleDataFilePath"]
+        )
+
+        print(new_model_data)         
       shell: python
           
 
