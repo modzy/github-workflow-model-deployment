@@ -1,5 +1,5 @@
 {
-    "name": "GitHub Workflow (CI/CD) Example Model",
+    "name": "CI/CD Example Model",
     "version": "0.0.1",
     "weightsFilePath": "weights/model_latest.pkl",
     "sampleDataFilePath": "data/digits_sample.json"
