@@ -33,7 +33,7 @@ joblib==1.1.0
 Mako==1.2.0
 MarkupSafe==2.1.1
 mlflow==1.25.1
-modzy-sdk>=0.8.0
+modzy-sdk>=0.10.2
 numpy==1.22.3
 oauthlib==3.2.0
 packaging==21.3
