@@ -1,5 +1,5 @@
 {
-    "name": "Github Actions Example Model",
+    "name": "Github Actions Deployment",
     "version": "0.0.1",
     "weightsFilePath": "weights/model_latest.pkl",
     "sampleDataFilePath": "data/digits_sample.json"
