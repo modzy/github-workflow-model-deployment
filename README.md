@@ -4,7 +4,7 @@
 
 <div align="center">
 
-**This repository provides an example of a simple FastAPI wrapper around a Scikit-learn model that is containerized and served with Docker.**
+**This repository illustrates a CI/CD pipeline to automate the deployment of machine learning models to Modzy.**
 
 ![GitHub contributors](https://img.shields.io/github/contributors/modzy/github-workflow-model-deployment?logo=GitHub&style=flat)
 ![GitHub last commit](https://img.shields.io/github/last-commit/modzy/github-workflow-model-deployment?logo=GitHub&style=flat)
