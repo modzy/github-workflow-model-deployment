@@ -1,13 +1,15 @@
 # Modzy Integration GitHub Actions
 
-<div align="center">
-<img src="https://www.modzy.com/wp-content/uploads/2020/06/MODZY-RGB-POS.png" alt="modzy logo" width="250" align="center"/>
-  
-**This repository illustrates a CI/CD pipeline to automate the deployment of machine learning models to Modzy.**
+![Modzy Logo](./imgs/github-action-image.png)
 
-![GitHub contributors](https://img.shields.io/github/contributors/modzy/github-workflow-model-deployment)
-![GitHub last commit](https://img.shields.io/github/last-commit/modzy/github-workflow-model-deployment)
-![GitHub Release Date](https://img.shields.io/github/issues-raw/modzy/github-workflow-model-deployment)
+<div align="center">
+
+**This repository provides an example of a simple FastAPI wrapper around a Scikit-learn model that is containerized and served with Docker.**
+
+![GitHub contributors](https://img.shields.io/github/contributors/modzy/github-workflow-model-deployment?logo=GitHub&style=flat)
+![GitHub last commit](https://img.shields.io/github/last-commit/modzy/github-workflow-model-deployment?logo=GitHub&style=flat)
+![GitHub issues](https://img.shields.io/github/issues-raw/modzy/github-workflow-model-deployment?logo=github&style=flat)
+![GitHub](https://img.shields.io/github/license/modzy/github-workflow-model-deployment?logo=apache&style=flat)
 
 [Chassis](<https://github.com/modzy/chassis>)
 </div>
