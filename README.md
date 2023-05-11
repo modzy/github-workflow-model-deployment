@@ -10,8 +10,11 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/modzy/github-workflow-model-deployment?logo=GitHub&style=flat)
 ![GitHub issues](https://img.shields.io/github/issues-raw/modzy/github-workflow-model-deployment?logo=github&style=flat)
 ![GitHub](https://img.shields.io/github/license/modzy/github-workflow-model-deployment?logo=apache&style=flat)
-
-[Chassis](<https://github.com/modzy/chassis>)
+   
+<h3 align="center">
+  <a href="https://docs.modzy.com/docs/github-actions">Full Tutorial</a>
+  <span> · </span>   
+  <a href="https://chassis.ml">Chassis Docs</a>
 </div>
 
 ## Overview
