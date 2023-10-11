@@ -45,7 +45,30 @@ jobs:
           push: true
           tags: ghcr.io/${{ github.repository }}:latest
 
-  # deploy:
+  deploy:
+    needs: [package]
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v3
+      - 
+        name: Python setup 
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+      - 
+        name: Install python dependencies 
+        run: pip install modzy-sdk>=0.11.6
+      -
+        name: Deploy model container to Modzy 
+        env: 
+          CONTAINER: ghcr.io/${{ github.repository }}:latest
+          MODZY_URL: ${{ secrets.MODZY_URL }}
+          MODZY_API_KEY: ${{ secrets.MODZY_API_KEY }}
+        run: python deploy.py
+          
           
 
             
