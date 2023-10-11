@@ -3,92 +3,49 @@ name: Build
 on:
   push:
     paths:
-      'model_info.json'
+      - 'model_info.json'
 
 jobs:
-  build:
-    name: Build Container and Publish to Modzy
+  package:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-python@v2
-      with:
-        python-version: '3.9'
-        cache: 'pip'
-    - run: pip install -r requirements.txt
-    - name: Invoke Chassis Service
-      env: 
-        DOCKER_USER: ${{ secrets.DOCKER_USER }}
-        DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
-        MODZY_URL: ${{ secrets.MODZY_URL }}
-        MODZY_API_KEY: ${{ secrets.MODZY_API_KEY }}
-        CHASSIS_SERVICE: ${{ secrets.CHASSIS_SERVICE }}
-      run: |
-        import os, json, pickle, chassisml
-        from modzy import ApiClient
-        import numpy as np
+      -
+        name: Checkout
+        uses: actions/checkout@v3
+      - 
+        name: Python setup 
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+      - 
+        name: Install python dependencies 
+        run: pip install -r requirements.txt
+      -
+        name: Run Chassis code to prepare context
+        run: python package.py
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      -
+        name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}      
+      -
+        name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: ./build
+          push: true
+          tags: ghcr.io/${{ github.repository }}:latest
 
-        chassis_creds = {
-            "dockerhub_user": os.getenv("DOCKER_USER"),
-            "dockerhub_pass": os.getenv("DOCKER_PASS"),
-            "modzy_url": os.getenv("MODZY_URL"),
-            "modzy_api_key": os.getenv("MODZY_API_KEY"),
-        }
-
-        with open("model_info.json", "r") as model_file:
-            model_info = json.load(model_file)
-        
-        model = pickle.load(open(model_info["weightsFilePath"], "rb"))
-
-        def process(input_bytes):
-            '''
-            This method takes raw bytes as input and runs inference on the data with the loaded_model object
-            '''
-            inputs = np.array(json.loads(input_bytes))
-            inference_results = model.predict(inputs)
-            structured_results = []
-            for inference_result in inference_results:
-                structured_output = {
-                    "data": {
-                        "result": {"classPredictions": [{"class": str(inference_result), "score": str(1)}]}
-                    }
-                }
-                structured_results.append(structured_output)
-
-            return structured_results 
-
-        chassis_client = chassisml.ChassisClient(os.getenv("CHASSIS_SERVICE"))
-        chassis_model = chassis_client.create_model(process_fn=process)
-
-        try:
-          results = chassis_model.test(model_info["sampleDataFilePath"])
-        except Exception as e:
-          raise ValueError("Error testing model: {}".format(e))
-
-        response = chassis_model.publish(
-          model_name=model_info["name"],
-          model_version=model_info["version"],
-          registry_user=chassis_creds["dockerhub_user"],
-          registry_pass=chassis_creds["dockerhub_pass"]
-        )
-
-        print(response.get('job_id'))
-
-        final_status = chassis_client.block_until_complete(response.get('job_id'))
-        print(final_status)
-
-        # deploy model with Modzy SDK
-        client = ApiClient(chassis_creds["modzy_url"], chassis_creds["modzy_api_key"])
-
-        new_model_data = client.models.deploy(
-            container_image=f"{chassis_creds['dockerhub_user']}/{'-'.join(model_info['name'].lower().split(' '))}:{model_info['version']}",
-            model_name=model_info["name"],
-            model_version=model_info["version"],
-            sample_input_file=model_info["sampleDataFilePath"]
-        )
-
-        print(new_model_data)         
-      shell: python
+  # deploy:
           
 
             
