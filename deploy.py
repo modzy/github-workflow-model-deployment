@@ -15,7 +15,8 @@ new_model_data = client.models.deploy(
     container_image=os.getenv("CONTAINER"),
     model_name=model_info["name"],
     model_version=model_info["version"],
-    sample_input_file=model_info["sampleDataFilePath"]
+    sample_input_file=model_info["sampleDataFilePath"],
+    model_id=model_info["modelId"]
 )
 
 print(new_model_data)    
