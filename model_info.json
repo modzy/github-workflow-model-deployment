@@ -1,7 +1,7 @@
 {
     "name": "Github Actions Example Deployment",
-    "version": "0.0.1",
-    "modelId": "",
+    "version": "0.0.2",
+    "modelId": "2scj5icbm3",
     "weightsFilePath": "weights/model_latest.pkl",
     "sampleDataFilePath": "data/digits_sample.json"
 }
