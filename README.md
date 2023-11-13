@@ -29,6 +29,8 @@ The layout of this repository is strictly an example of how a data scientist mig
 * `data/`: Folder to hold any training data, sample test data, or additional model dependencies
 * `weights/`: Folder to hold any saved model weights
 * `train.py`: Python script that trains and saves the weights locally for a scikit-learn logistic regression model
+* `package.py`: Python script that leverages [Chassis](https://chassisml.io) code to containerize a model and save the container locally in the Github docker registry.
+* `deploy.py`: Python script that leverages Modzy APIs to automatically deploy the container built in `package.py` to Modzy
 * `model_info.json`: Single JSON file used to define model information. The GitHub action references this file to complete the execution of the CI/CD workflow.  
 * `requirements.txt`: Contains list of python packages required to execute any script in this repository
 
@@ -57,9 +59,6 @@ Example `model_info.json`:
 **As a DevOps or machine learning engineer...**
 * Ensure the Chassis code in the `.github/workflows/ci.yml` file aligns with the model the data scientist is building. Specifically the `process` method must read in the sample data properly, use the loaded model to make predictions, and return the results in the data scientist's desired format.
 * Navigate to the Settings tab within this repository and click on Secrets --> Actions. Set the following Secrets (to be accessed in the GitHub Action workflow):
-    * `CHASSIS_SERVICE`: URL to publicly-hosted Chassis service
-    * `DOCKER_USER`: Valid Dockerhub username
-    * `DOCKER_PASS`: Valid Dockerhub password
     * `MODZY_URL`: Valid Modzy instance URL
     * `MODZY_API_KEY`: Valid Modzy API key associated with `MODZY_URL` instance. *Note: this API key must be associated with a user that has the "Data Scientist" role*.
 
